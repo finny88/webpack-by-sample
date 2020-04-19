@@ -11,5 +11,8 @@ module.exports = {
         loader: "babel-loader"
       }
     ]
+  },
+  devServer: {
+    port: 8080
   }
 };
