@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   entry: ["./students.js"],
@@ -23,6 +24,10 @@ module.exports = {
       filename: "index.html", //Name of file in ./dist/
       template: "index.html", //Name of template in ./src
       hash: true
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
     })
   ]
 };
