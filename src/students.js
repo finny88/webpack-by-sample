@@ -1,5 +1,6 @@
 // Let's use some ES6 features
 import { getAvg, getTotalScore } from "./averageService";
+import logoImg from "./content/logo_1.png";
 
 $("body").css("background-color", "lightSkyBlue");
 
@@ -16,4 +17,9 @@ new Promise((resolve, reject) =>
     $("#total").html(messageToDisplayTotal);
     resolve();
   }, 2000)
-);
+).then(() => {
+  const img = document.createElement("img");
+  img.src = logoImg;
+
+  document.getElementById("imgContainer").appendChild(img);
+});
