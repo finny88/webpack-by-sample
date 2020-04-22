@@ -2,12 +2,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 
+const path = require("path");
+const basePath = __dirname;
+
 module.exports = {
+  context: path.join(basePath, "src"),
   entry: {
     app: "./students.js",
     appStyles: ["./mystyles.scss"],
     vendor: ["jquery"],
-    vendorStyles: ["./node_modules/bootstrap/dist/css/bootstrap.css"]
+    vendorStyles: ["../node_modules/bootstrap/dist/css/bootstrap.css"]
   },
   optimization: {
     splitChunks: {

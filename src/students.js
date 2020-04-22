@@ -12,8 +12,8 @@ const messageToDisplayTotal = `total score ${totalScore}`;
 
 new Promise((resolve, reject) =>
   window.setTimeout(() => {
-    document.write(messageToDisplayAvg);
-    document.write(messageToDisplayTotal);
+    $("#avg").html(messageToDisplayAvg);
+    $("#total").html(messageToDisplayTotal);
     resolve();
   }, 2000)
 );
