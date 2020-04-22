@@ -5,7 +5,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     app: "./students.js",
-    appStyles: ["./mystyles.css"],
+    appStyles: ["./mystyles.scss"],
     vendor: ["jquery"],
     vendorStyles: ["./node_modules/bootstrap/dist/css/bootstrap.css"]
   },
@@ -30,6 +30,20 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader"
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              implementation: require("sass")
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
