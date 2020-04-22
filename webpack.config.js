@@ -19,14 +19,14 @@ module.exports = {
         vendor: {
           chunks: "all",
           name: "vendor",
-          test: /[\\/]node_modules[\\/]/,
+          test: /[\\/]node_modules[\\/]((?!s?css).)*$/,
           enforce: true
         }
       }
     }
   },
   output: {
-    filename: "[name].[chunkhash].js"
+    filename: "./js/[name].[chunkhash].js"
   },
   module: {
     rules: [
@@ -56,7 +56,13 @@ module.exports = {
       {
         test: /\.(png|jpg)$/,
         exclude: /node_modules/,
-        loader: "url-loader?limit=5000"
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 5000,
+            name: "./img/[hash].[name].[ext]"
+          }
+        }
       },
       {
         test: /\.html$/,
@@ -78,7 +84,7 @@ module.exports = {
       jQuery: "jquery"
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: "./css/[name].css",
       chunkFilename: "[id].css"
     })
   ]
