@@ -6,7 +6,8 @@ module.exports = {
   entry: {
     app: "./students.js",
     appStyles: ["./mystyles.css"],
-    vendor: ["jquery"]
+    vendor: ["jquery"],
+    vendorStyles: ["./node_modules/bootstrap/dist/css/bootstrap.css"]
   },
   optimization: {
     splitChunks: {
@@ -32,7 +33,6 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: [MiniCssExtractPlugin.loader, "css-loader"]
       }
     ]
