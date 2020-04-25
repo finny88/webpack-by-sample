@@ -7,8 +7,11 @@ const basePath = __dirname;
 
 module.exports = {
   context: path.join(basePath, "src"),
+  resolve: {
+    extensions: [".js", ".jsx"]
+  },
   entry: {
-    app: "./students.js",
+    app: "./students.jsx",
     appStyles: ["./mystyles.scss"],
     vendor: ["jquery"],
     vendorStyles: ["../node_modules/bootstrap/dist/css/bootstrap.css"]
@@ -31,7 +34,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: "babel-loader"
       },
