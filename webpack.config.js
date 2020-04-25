@@ -8,10 +8,10 @@ const basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"]
   },
   entry: {
-    app: "./students.jsx",
+    app: "./students.tsx",
     appStyles: ["./mystyles.scss"],
     vendor: ["jquery"],
     vendorStyles: ["../node_modules/bootstrap/dist/css/bootstrap.css"]
@@ -33,6 +33,15 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        loader: "awesome-typescript-loader",
+        options: {
+          useBabel: true,
+          babelCore: "@babel/core" // needed for Babel v7
+        }
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -90,5 +99,7 @@ module.exports = {
       filename: "./css/[name].css",
       chunkFilename: "[id].css"
     })
-  ]
+  ],
+  // For development https://webpack.js.org/configuration/devtool/#for-development
+  devtool: "inline-source-map"
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { AverageComponent } from "./averageComponent";
+
 import logoImg from "./content/logo_1.png";
 
 $("body").css("background-color", "lightSkyBlue");
