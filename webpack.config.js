@@ -36,11 +36,14 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        loader: "awesome-typescript-loader",
-        options: {
-          useBabel: true,
-          babelCore: "@babel/core" // needed for Babel v7
-        }
+        use: [
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: "ts-loader"
+          }
+        ]
       },
       {
         test: /\.jsx?$/,
