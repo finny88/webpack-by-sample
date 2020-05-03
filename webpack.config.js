@@ -8,10 +8,13 @@ const basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      "react-dom": "@hot-loader/react-dom"
+    }
   },
   entry: {
-    app: "./students.tsx",
+    app: "./index.tsx",
     appStyles: ["./mystyles.scss"],
     vendor: ["jquery"],
     vendorStyles: ["../node_modules/bootstrap/dist/css/bootstrap.css"]
@@ -29,7 +32,7 @@ module.exports = {
     }
   },
   output: {
-    filename: "./js/[name].[chunkhash].js"
+    filename: "./js/[name].[hash].js"
   },
   module: {
     rules: [
@@ -110,5 +113,8 @@ module.exports = {
     })
   ],
   // For development https://webpack.js.org/configuration/devtool/#for-development
-  devtool: "inline-source-map"
+  devtool: "inline-source-map",
+  devServer: {
+    hot: true
+  }
 };

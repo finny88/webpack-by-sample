@@ -1,20 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { hot } from "react-hot-loader/root";
 import { AverageComponent } from "./averageComponent";
-
-import logoImg from "./content/logo_1.png";
+import { TotalScoreComponent } from "./totalScoreComponent";
 
 $("body").css("background-color", "lightSkyBlue");
 
-const img = document.createElement("img");
-img.src = logoImg;
+const App: React.FunctionComponent = () => {
+  return (
+    <div>
+      <h1>Hello from React DOM</h1>
+      <AverageComponent />
+      <TotalScoreComponent />
+    </div>
+  );
+};
 
-document.getElementById("imgContainer").appendChild(img);
-
-ReactDOM.render(
-  <div>
-    <h1>Hello from React DOM</h1>
-    <AverageComponent />
-  </div>,
-  document.getElementById("root")
-);
+export default hot(App);
