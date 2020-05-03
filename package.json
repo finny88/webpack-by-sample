@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --mode development --open --config dev.webpack.config.js",
     "build:dev": "rimraf dist && webpack --config dev.webpack.config.js",
     "build:prod": "rimraf dist && webpack --config prod.webpack.config.js",
+    "start:prod": "node ./server",
     "lint": "eslint ./src/**/*.{ts,tsx}"
   },
   "repository": {
@@ -57,7 +58,10 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "bootstrap": "^4.4.1",
+    "compression": "^1.7.4",
     "core-js": "^3.6.5",
+    "express": "^4.17.1",
+    "express-static-gzip": "^2.0.6",
     "jquery": "^3.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
