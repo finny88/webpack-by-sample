@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 
 const path = require("path");
@@ -8,10 +7,7 @@ const basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
-    alias: {
-      "react-dom": "@hot-loader/react-dom"
-    }
+    extensions: [".js", ".jsx", ".ts", ".tsx"]
   },
   entry: {
     app: "./index.tsx",
@@ -30,9 +26,6 @@ module.exports = {
         }
       }
     }
-  },
-  output: {
-    filename: "./js/[name].[hash].js"
   },
   module: {
     rules: [
@@ -58,24 +51,6 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: "babel-loader"
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              implementation: require("sass")
-            }
-          }
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.(png|jpg)$/,
@@ -106,15 +81,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
-    }),
-    new MiniCssExtractPlugin({
-      filename: "./css/[name].css",
-      chunkFilename: "[id].css"
     })
-  ],
-  // For development https://webpack.js.org/configuration/devtool/#for-development
-  devtool: "inline-source-map",
-  devServer: {
-    hot: true
-  }
+  ]
 };
