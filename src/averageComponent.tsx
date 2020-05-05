@@ -1,17 +1,26 @@
-import React from "react";
-import { getAvg } from "./averageService";
+import React, { useCallback } from "react";
 
 export const AverageComponent: React.FunctionComponent = () => {
   const [average, setAverage] = React.useState<number>(0);
 
-  React.useEffect(() => {
-    const scores: number[] = [90, 75, 60, 99, 94, 30];
-    setAverage(getAvg(scores));
+  const handleClick = useCallback(() => {
+    import("./averageService")
+      .then(module => {
+        const scores: number[] = [90, 75, 60, 99, 94, 30, 87, 92, 100];
+        setAverage(module.getAvg(scores));
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
 
   return (
     <div>
       <span>Students average: {average}</span>
+
+      <button type="button" className="ml-2" onClick={handleClick}>
+        Calculate
+      </button>
     </div>
   );
 };
