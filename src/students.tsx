@@ -1,29 +1,29 @@
-import React, { useState, useCallback, createElement } from "react";
-import { hot } from "react-hot-loader/root";
+import React, { useState, useCallback, createElement } from 'react';
+import { hot } from 'react-hot-loader/root';
 
-$("body").css("background-color", "lightSkyBlue");
+$('body').css('background-color', 'lightSkyBlue');
 
 const App: React.FunctionComponent = () => {
   const [averageElement, setAverageElement] = useState(null);
   const [totalElement, setTotalElement] = useState(null);
 
   const handleShowAverage = useCallback(() => {
-    import("./AverageComponent")
-      .then(module => {
+    import('./AverageComponent')
+      .then((module) => {
         console.log(module.AverageComponent);
         setAverageElement(createElement(module.AverageComponent));
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
   const handleShowTotal = useCallback(() => {
-    import("./TotalScoreComponent")
-      .then(module => {
+    import('./TotalScoreComponent')
+      .then((module) => {
         console.log(module.TotalScoreComponent);
         setTotalElement(createElement(module.TotalScoreComponent));
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);

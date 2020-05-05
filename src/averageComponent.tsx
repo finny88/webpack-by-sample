@@ -1,15 +1,15 @@
-import React, { useCallback, useState, FC } from "react";
+import React, { useCallback, useState, FC } from 'react';
 
 export const AverageComponent: FC = () => {
   const [average, setAverage] = useState<number>(0);
 
   const handleClick = useCallback(() => {
-    import("./averageService")
-      .then(module => {
+    import('./averageService')
+      .then((module) => {
         const scores: number[] = [90, 75, 60, 99, 94, 30, 87, 92, 100];
         setAverage(module.getAvg(scores));
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
