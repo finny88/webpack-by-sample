@@ -7,3 +7,4 @@ export function getAvg(scores: number[]): number {
 }
 
 console.log(`We are in: ${process.env.NODE_ENV}`);
+console.log(`Api base: ${process.env.API_BASE}`);
