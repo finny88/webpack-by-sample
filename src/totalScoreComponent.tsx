@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, FC } from "react";
 
-export const TotalScoreComponent: React.FunctionComponent = () => {
-  const [totalScore, setTotalScore] = React.useState<number>(0);
+const TotalScoreComponent: FC = () => {
+  const [totalScore, setTotalScore] = useState<number>(0);
 
   const handleClick = useCallback(() => {
     import("./averageService")
@@ -25,3 +25,5 @@ export const TotalScoreComponent: React.FunctionComponent = () => {
     </div>
   );
 };
+
+export default TotalScoreComponent;

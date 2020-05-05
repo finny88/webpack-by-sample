@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, FC } from "react";
 
-export const AverageComponent: React.FunctionComponent = () => {
-  const [average, setAverage] = React.useState<number>(0);
+const AverageComponent: FC = () => {
+  const [average, setAverage] = useState<number>(0);
 
   const handleClick = useCallback(() => {
     import("./averageService")
@@ -24,3 +24,5 @@ export const AverageComponent: React.FunctionComponent = () => {
     </div>
   );
 };
+
+export default AverageComponent;
