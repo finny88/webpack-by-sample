@@ -7,7 +7,10 @@ const basePath = __dirname;
 module.exports = {
   context: path.join(basePath, "src"),
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      jquery: "jquery/dist/jquery.slim.js"
+    }
   },
   entry: {
     app: "./index.tsx",
