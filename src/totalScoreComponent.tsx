@@ -1,6 +1,6 @@
 import React, { useCallback, useState, FC } from "react";
 
-const TotalScoreComponent: FC = () => {
+export const TotalScoreComponent: FC = () => {
   const [totalScore, setTotalScore] = useState<number>(0);
 
   const handleClick = useCallback(() => {
@@ -25,5 +25,3 @@ const TotalScoreComponent: FC = () => {
     </div>
   );
 };
-
-export default TotalScoreComponent;
