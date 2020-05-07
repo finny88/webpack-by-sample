@@ -1,18 +1,20 @@
 import React, { FC, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { increase, IAppState, decrease, reset } from './redux';
+import { increaseAsync } from './redux/counter/actions';
 
 export const Counter: FC = () => {
   const numberInputRef = useRef<HTMLInputElement>();
 
   const dispatch = useDispatch();
 
-  const count = useSelector((state: IAppState) => state.counter.count);
+  const { count, calculating } = useSelector((state: IAppState) => state.counter, shallowEqual);
 
   return (
     <div>
       <div>
         <span>Counter: {count}</span>
+        {calculating && <span>{' calculating...'}</span>}
       </div>
       <div>
         <button onClick={() => dispatch(increase(parseInt(numberInputRef.current.value)))}>
@@ -22,6 +24,9 @@ export const Counter: FC = () => {
           Decrease
         </button>
         <button onClick={() => dispatch(reset())}>Reset</button>
+        <button onClick={() => dispatch(increaseAsync(parseInt(numberInputRef.current.value)))}>
+          Increase async
+        </button>
         <input type="number" ref={numberInputRef} />
       </div>
     </div>
