@@ -1,7 +1,11 @@
-import React, { useState, FC } from 'react';
+import React, { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { increase, IAppState, decrease, reset } from './redux';
 
 export const Counter: FC = () => {
-  const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+
+  const count = useSelector((state: IAppState) => state.counter.count);
 
   return (
     <div>
@@ -9,9 +13,9 @@ export const Counter: FC = () => {
         <span>Counter: {count}</span>
       </div>
       <div>
-        <button onClick={() => setCount((count) => count + 1)}>Increase</button>
-        <button onClick={() => setCount((count) => count - 1)}>Decrease</button>
-        <button onClick={() => setCount(0)}>Reset</button>
+        <button onClick={() => dispatch(increase())}>Increase</button>
+        <button onClick={() => dispatch(decrease())}>Decrease</button>
+        <button onClick={() => dispatch(reset())}>Reset</button>
       </div>
     </div>
   );
