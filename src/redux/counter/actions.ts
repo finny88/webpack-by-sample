@@ -1,4 +1,3 @@
-import { delay, put, takeEvery } from '@redux-saga/core/effects';
 import { CounterActionsKinds } from './actionsTypes';
 
 export interface ICounterAction {
@@ -24,13 +23,3 @@ export const increaseAsyncStartAction = (payload?: number): ICounterAction => ({
   type: CounterActionsKinds.INCREASE_START,
   payload,
 });
-
-export function* increaseAsync(action: ICounterAction): Generator {
-  delay(1000);
-
-  yield put({ type: CounterActionsKinds.INCREASE_FINISH, payload: action.payload });
-}
-
-export function* watchIncrementAsync(): Generator {
-  yield takeEvery(CounterActionsKinds.INCREASE_START, increaseAsync);
-}
