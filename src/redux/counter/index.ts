@@ -1,2 +1,8 @@
-export { increase, decrease, reset } from './actions';
+export {
+  increase,
+  decrease,
+  reset,
+  watchIncrementAsync,
+  increaseAsyncStartAction,
+} from './actions';
 export { counterReducer, ICounterState } from './reducer';

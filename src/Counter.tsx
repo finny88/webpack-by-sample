@@ -1,7 +1,7 @@
 import React, { FC, useRef } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { increase, IAppState, decrease, reset } from './redux';
-import { increaseAsync } from './redux/counter/actions';
+import { increaseAsyncStartAction } from './redux/counter/actions';
 
 export const Counter: FC = () => {
   const numberInputRef = useRef<HTMLInputElement>();
@@ -24,7 +24,9 @@ export const Counter: FC = () => {
           Decrease
         </button>
         <button onClick={() => dispatch(reset())}>Reset</button>
-        <button onClick={() => dispatch(increaseAsync(parseInt(numberInputRef.current.value)))}>
+        <button
+          onClick={() => dispatch(increaseAsyncStartAction(parseInt(numberInputRef.current.value)))}
+        >
           Increase async
         </button>
         <input type="number" ref={numberInputRef} />

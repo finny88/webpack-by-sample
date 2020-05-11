@@ -1,8 +1,5 @@
-import { Dispatch } from 'redux';
-import { ThunkDispatch, ThunkAction } from 'redux-thunk';
+import { delay, put, takeEvery } from '@redux-saga/core/effects';
 import { CounterActionsKinds } from './actionsTypes';
-import { ICounterState } from './reducer';
-import { TIMEOUT } from 'dns';
 
 export interface ICounterAction {
   type: CounterActionsKinds;
@@ -23,12 +20,17 @@ export const reset = (): ICounterAction => ({
   type: CounterActionsKinds.RESET,
 });
 
-export const increaseAsync = (
-  payload?: number,
-): ThunkAction<void, ICounterState, undefined, ICounterAction> => (dispatch: Dispatch) => {
-  dispatch({
-    type: CounterActionsKinds.INCREASE_START,
-  });
+export const increaseAsyncStartAction = (payload?: number): ICounterAction => ({
+  type: CounterActionsKinds.INCREASE_START,
+  payload,
+});
 
-  window.setTimeout(() => dispatch({ type: CounterActionsKinds.INCREASE_FINISH, payload }), 1000);
-};
+export function* increaseAsync(action: ICounterAction): Generator {
+  delay(1000);
+
+  yield put({ type: CounterActionsKinds.INCREASE_FINISH, payload: action.payload });
+}
+
+export function* watchIncrementAsync(): Generator {
+  yield takeEvery(CounterActionsKinds.INCREASE_START, increaseAsync);
+}
