@@ -1,5 +1,5 @@
 import React, { useCallback, useState, FC } from 'react';
-import './averageComponent.scss';
+import 'averageComponent.scss';
 
 export const AverageComponent: FC = () => {
   const [average, setAverage] = useState<number>(0);

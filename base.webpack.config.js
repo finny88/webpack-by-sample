@@ -1,11 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
-const basePath = __dirname;
+
+const rootPath = path.join(__dirname, 'src');
 
 module.exports = {
-  context: path.join(basePath, 'src'),
+  context: rootPath,
   resolve: {
+    modules: [rootPath, 'node_modules'],
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       jquery: 'jquery/dist/jquery.slim.js',
