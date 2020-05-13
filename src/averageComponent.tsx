@@ -1,4 +1,5 @@
 import React, { useCallback, useState, FC } from 'react';
+import './averageComponent.scss';
 
 export const AverageComponent: FC = () => {
   const [average, setAverage] = useState<number>(0);
@@ -18,7 +19,7 @@ export const AverageComponent: FC = () => {
     <div>
       <span>Students average: {average}</span>
 
-      <button type="button" className="ml-2" onClick={handleClick}>
+      <button type="button" className="ml-2 red-button" onClick={handleClick}>
         Calculate
       </button>
     </div>

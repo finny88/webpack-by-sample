@@ -22,16 +22,14 @@ module.exports = merge(base, {
           {
             loader: 'css-loader',
             options: {
-              modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
-              },
-              localsConvention: 'camelCase',
+              sourceMap: true,
             },
           },
           {
             loader: 'sass-loader',
             options: {
               implementation: require('sass'),
+              sourceMap: true,
             },
           },
         ],
