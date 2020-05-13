@@ -5,8 +5,10 @@ import { Counter } from './Counter';
 $('body').css('background-color', 'lightSkyBlue');
 
 const App: React.FunctionComponent = () => {
-  const [averageElement, setAverageElement] = useState(null);
-  const [totalElement, setTotalElement] = useState(null);
+  const [averageElement, setAverageElement] = useState<React.FunctionComponentElement<{}> | null>(
+    null,
+  );
+  const [totalElement, setTotalElement] = useState<React.FunctionComponentElement<{}> | null>(null);
 
   const handleShowAverage = useCallback(() => {
     import('./AverageComponent')

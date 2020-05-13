@@ -4,7 +4,7 @@ import { increase, IAppState, decrease, reset } from './store';
 import { increaseAsyncStartAction } from './store/counter/actions';
 
 export const Counter: FC = () => {
-  const numberInputRef = useRef<HTMLInputElement>();
+  const numberInputRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
 
@@ -17,15 +17,29 @@ export const Counter: FC = () => {
         {calculating && <span>{' calculating...'}</span>}
       </div>
       <div>
-        <button onClick={() => dispatch(increase(parseInt(numberInputRef.current.value)))}>
+        <button
+          onClick={() =>
+            dispatch(increase(numberInputRef.current ? parseInt(numberInputRef.current.value) : 1))
+          }
+        >
           Increase
         </button>
-        <button onClick={() => dispatch(decrease(parseInt(numberInputRef.current.value)))}>
+        <button
+          onClick={() =>
+            dispatch(decrease(numberInputRef.current ? parseInt(numberInputRef.current.value) : 1))
+          }
+        >
           Decrease
         </button>
         <button onClick={() => dispatch(reset())}>Reset</button>
         <button
-          onClick={() => dispatch(increaseAsyncStartAction(parseInt(numberInputRef.current.value)))}
+          onClick={() =>
+            dispatch(
+              increaseAsyncStartAction(
+                numberInputRef.current ? parseInt(numberInputRef.current.value) : 1,
+              ),
+            )
+          }
         >
           Increase async
         </button>
